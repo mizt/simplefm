@@ -1,7 +1,6 @@
 #include <emscripten.h>
 #include <math.h>
 
-
 #define kSineSize 8192
 #define TWO_PI 3.14159265358979323846*2.0
 
@@ -89,16 +88,6 @@ class SinOsc {
 			return wav;
 		}
 };
-
-
-namespace Function {
-	
-	typedef struct {
-		float *points;
-		unsigned long length;	
-	} Data;
-
-}
 
 namespace Line {
 
@@ -290,17 +279,16 @@ extern "C" {
 	
 	void setup() {
 		
-		
 		initialize();
+		
 		sinOsc[0] = new SinOsc(0);
 		sinOsc[1] = new SinOsc(0);
 	}
 	
 	void calc(float *L, float *R,int len) {
-		if(sinOsc[0]&&sinOsc[1]) {
-			
+		
+		if(sinOsc[0]&&sinOsc[1]) {	
 			double freq = sig[0]*sig[1];
-			
 			for(int k=0; k<len; k++) {						
 				sinOsc[0]->set(freq);
 				sinOsc[1]->set(sig[0]+sinOsc[0]->next()*freq*mod->next());
@@ -324,7 +312,6 @@ extern "C" {
 
 		amp->set(pAmp,ampLen);
 		amp->bang();
-		
 				
 	}
 }
