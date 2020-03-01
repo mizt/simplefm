@@ -5,12 +5,6 @@
 
 double SAMPLE_RATE = 44100.0;
 
-void initialize() {
-	
-
-}
-
-// https://github.com/supercollider/supercollider/blob/f806ace7bd8565dd174e7d47a1b32aaa4175a46e/server/plugins/OscUGens.cpp
 class SinOsc {
 	
 	private:
@@ -25,7 +19,6 @@ class SinOsc {
 		}
 		
 		void set(double freq) {
-			//this->phaseinc = (int)(cpstoinc*freq);
 			this->phaseinc =  2.0*M_PI*(freq/SAMPLE_RATE);
 		}
 	
@@ -224,9 +217,7 @@ float sig[2] = {0,0};
 extern "C" {
 	
 	void setup() {
-		
-		initialize();
-		
+				
 		sinOsc[0] = new SinOsc(0);
 		sinOsc[1] = new SinOsc(0);
 	}
